@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #89879e;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  color: #322368;
+}
+
+input {
+  font: inherit;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d89742;
+}
+
+button {
+  font: inherit;
+  border: 1px solid #8035d6;
+  background: #ddb77d;
+  color: white;
+  border-radius: 5px;
+  padding: 0.8rem 3rem;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover,
+button:active {
+  background: #355e19;
+  border-color: #355e19;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.inline-controls {
+  display: flex;
+}
+
+.control {
+  margin: 1rem;
+}
+
+#user-input,
+#movie-list,
+#filter {
+  width: 50rem;
+  max-width: 90%;
+  margin: 2rem auto;
+}
+
+#movie-list {
+  display: none;
+}
+
+#movie-list.visible {
+  display: block;
+}
