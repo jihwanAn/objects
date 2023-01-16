@@ -67,7 +67,3 @@ button:active {
 #movie-list {
   display: none;
 }
-
-#movie-list.visible {
-  display: block;
-}
