@@ -23,8 +23,9 @@ const renderMovies = (filter = "") => {
     const { info, ...otherProps } = movie;
     console.log(otherProps);
     // const { title: movieTitle } = info;
-    // const { getFormattedTitle } = movie;
-    let text = movie.getFormattedTitle() + "-"; // this가 movie 객체를 참조
+    let { getFormattedTitle } = movie;
+    // getFormattedTitle = getFormattedTitle.bind(movie);
+    let text = movie.getFormattedTitle.call(movie) + "-"; // this가 movie 객체를 참조
     for (const key in info) {
       if (key !== "title") {
         text = text + `${key}: ${info[key]}`;
@@ -55,7 +56,8 @@ const addMovieHandler = () => {
       [extraName]: extraValue,
     },
     id: Math.random().toString(),
-    getFormattedTitle: function () {
+    getFormattedTitle: () => {
+      console.log(this);
       return this.info.title.toUpperCase();
     },
   };
@@ -63,7 +65,13 @@ const addMovieHandler = () => {
   renderMovies();
 };
 
+/*
+ * 브라우저는 이벤트 리스너에서 이벤트를 트리거하는 DOM요소에 this를 바인딩
+ * 화살표 함수에서 this는, 함수 외부에서와 똑같이 작동함
+ */
+
 const searchMovieHandler = () => {
+  console.log(this);
   const filterTerm = document.getElementById("filter-title").value;
   renderMovies(filterTerm);
 };
