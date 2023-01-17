@@ -27,7 +27,7 @@ const renderMovies = (filter = "") => {
     // getFormattedTitle = getFormattedTitle.bind(movie);
     let text = movie.getFormattedTitle.call(movie) + "-"; // this가 movie 객체를 참조
     for (const key in info) {
-      if (key !== "title") {
+      if (key !== "title" || key !== "title") {
         text = text + `${key}: ${info[key]}`;
       }
     }
@@ -52,7 +52,16 @@ const addMovieHandler = () => {
 
   const newMovie = {
     info: {
-      title,
+      set title(val) {
+        if (val.trim() === "") {
+          this._title = "DEFAULT";
+          return;
+        }
+        this.title = val;
+      },
+      get title() {
+        return this._title;
+      },
       [extraName]: extraValue,
     },
     id: Math.random().toString(),
@@ -61,6 +70,10 @@ const addMovieHandler = () => {
       return this.info.title.toUpperCase();
     },
   };
+
+  newMovie.info.title = title;
+  console.log(newMovie.info.title);
+
   movies.push(newMovie);
   renderMovies();
 };
